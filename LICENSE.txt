@@ -1,0 +1,11 @@
+Copyright © 2026 ForgeFrame Labs. All rights reserved.
+
+ForgeFrame Localization QA is made available as a free Visual Studio Code extension.
+You may install and use it for personal and internal professional work.
+Redistribution, repackaging for sale, and use of the ForgeFrame Labs name or
+logo in other products require prior written permission.
+
+This software is provided "as is" without warranties of any kind. Always verify
+localization in the context of the game or application before release.
+
+Support: forgeframe.lab@gmail.com

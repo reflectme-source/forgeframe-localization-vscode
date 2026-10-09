@@ -1,0 +1,92 @@
+{
+  "name": "forgeframe-localization-qa",
+  "displayName": "ForgeFrame Localization QA",
+  "description": "Catch missing translations, duplicate CSV keys and broken placeholders directly in VS Code. Offline diagnostics and CSV reports.",
+  "version": "0.1.0",
+  "publisher": "forgeframe-labs",
+  "private": true,
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "localization",
+    "i18n",
+    "csv",
+    "l10n",
+    "translation",
+    "unity",
+    "quality assurance"
+  ],
+  "icon": "assets/forgeframe-icon.png",
+  "license": "SEE LICENSE.txt",
+  "homepage": "https://reflectme-source.github.io/forgeframe-labs-site/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reflectme-source/forgeframe-labs-site"
+  },
+  "main": "./extension.cjs",
+  "activationEvents": [
+    "onCommand:forgeframeLocalization.inspectCsv",
+    "onCommand:forgeframeLocalization.showFindings",
+    "onCommand:forgeframeLocalization.exportCsv",
+    "onLanguage:csv"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "forgeframeLocalization.inspectCsv",
+        "title": "Inspect Current CSV",
+        "category": "ForgeFrame Localization QA"
+      },
+      {
+        "command": "forgeframeLocalization.showFindings",
+        "title": "Browse Localization Findings",
+        "category": "ForgeFrame Localization QA"
+      },
+      {
+        "command": "forgeframeLocalization.exportCsv",
+        "title": "Export Localization Findings as CSV",
+        "category": "ForgeFrame Localization QA"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "forgeframeLocalization.inspectCsv",
+          "when": "resourceExtname == .csv",
+          "group": "navigation@100"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ForgeFrame Localization QA",
+      "properties": {
+        "forgeframeLocalization.sourceLocale": {
+          "type": "string",
+          "default": "en",
+          "description": "Reference source language column in localization CSV files (e.g. en, en-US)."
+        },
+        "forgeframeLocalization.checkOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Scan open localization CSVs after saving. No network requests are made."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check extension.cjs && node --check lib/report-model.mjs",
+    "package:vsix": "vsce package --no-dependencies"
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description": "Analysis is read-only and performs no code execution or network access."
+    }
+  }
+}
